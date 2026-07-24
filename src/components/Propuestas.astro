@@ -1,0 +1,295 @@
+---
+import propuestas from '../data/propuestas.json';
+
+const ejes = [...new Set(propuestas.map(p => p.eje))];
+const imagenesPorPropuesta: Record<number, string> = {
+  1: '/images/Costa_verde_de_chincha.png',
+  2: '/images/Caja_Chincha.png',
+  3: '/images/Escuela_de_negocios.png',
+  4: '/images/Transporte_publico_integrado.png',
+  5: '/images/mercado_mayorista.png',
+  7: '/images/Delincuencia_0.png',
+  8: '/images/marca_chincha.png',
+  9: '/images/Provincia digital.png',
+  10: '/images/Agua para todos.png',
+};
+---
+
+<section id="propuestas" class="props-section">
+  <div class="props-container">
+    <h2 class="props-title">Las 10 Propuestas</h2>
+    <p class="props-intro">Cada propuesta tiene un público, un dato concreto y una historia. Una idea por pieza, un dato sorprendente, una emoción clara.</p>
+
+    {
+      ejes.map((eje) => (
+        <div class="props-eje">
+          <h3 class="props-eje-title">{eje}</h3>
+          {
+            propuestas.filter(p => p.eje === eje).map((prop) => {
+              const imagen = imagenesPorPropuesta[prop.id];
+
+              return (
+              <details class="props-card">
+                <summary class="props-summary">
+                  <div class="props-summary-left">
+                    <span class="props-number">{String(prop.id).padStart(2, '0')}</span>
+                    <div>
+                      <h4 class="props-name">{prop.titulo}</h4>
+                      <p class="props-tagline">"{prop.tagline}"</p>
+                    </div>
+                  </div>
+                  <svg class="props-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div class:list={['props-body', { 'props-body--with-image': Boolean(imagen) }]}>
+                  <div class="props-main">
+                    <div class="props-copy">
+                      <div class="props-impact">
+                        <p class="props-impact-label">Dato de impacto</p>
+                        <p class="props-impact-text">{prop.dato}</p>
+                      </div>
+                      <div>
+                        <p class="props-pillars-label">Pilares</p>
+                        <ul class="props-pillars">
+                          {prop.pilares.map((pilar) => (
+                            <li>
+                              <svg width="20" height="20" viewBox="0 0 20 20" fill="#D72638">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                              </svg>
+                              {pilar}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                    {
+                      imagen && (
+                        <figure class="props-image">
+                          <img src={imagen} alt={`Propuesta: ${prop.titulo}`} loading="lazy" />
+                        </figure>
+                      )
+                    }
+                  </div>
+                  <p class="props-conexion">{prop.conexion}</p>
+                </div>
+              </details>
+              );
+            })
+          }
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .props-section {
+    padding: 3rem 1rem 5rem;
+    background: #282525;
+  }
+
+  @media (min-width: 768px) {
+    .props-section { padding: 3rem 1rem 8rem; }
+  }
+
+  .props-container { max-width: 72rem; margin: 0 auto; }
+
+  .props-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.25rem;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .props-title { font-size: 3rem; }
+  }
+
+  .props-intro {
+    text-align: center;
+    color: rgba(229,226,217,0.7);
+    max-width: 42rem;
+    margin: 0 auto 4rem;
+  }
+
+  .props-eje {
+    margin-bottom: 2rem;
+  }
+
+  .props-eje-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.5rem;
+    color: #D72638;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .props-eje-title { font-size: 1.875rem; }
+  }
+
+  .props-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 1rem;
+  }
+
+  .props-card[open] {
+    border-color: rgba(215,38,56,0.5);
+  }
+
+  .props-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .props-summary::-webkit-details-marker { display: none; }
+
+  .props-summary:hover {
+    background: rgba(255,255,255,0.05);
+  }
+
+  .props-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .props-number {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #D72638;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.125rem;
+  }
+
+  .props-name {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.25rem;
+    color: white;
+    text-transform: uppercase;
+  }
+
+  .props-tagline {
+    color: rgba(229,226,217,0.8);
+    font-size: 0.875rem;
+    font-style: italic;
+  }
+
+  .props-chevron {
+    color: rgba(255,255,255,0.6);
+    transition: transform 0.3s;
+  }
+
+  .props-card[open] .props-chevron {
+    transform: rotate(180deg);
+  }
+
+  .props-body {
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  .props-main {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .props-image {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    min-height: 14rem;
+  }
+
+  .props-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 14rem;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    .props-body--with-image .props-main {
+      grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.7fr);
+      align-items: stretch;
+    }
+  }
+
+  .props-impact {
+    background: rgba(215,38,56,0.1);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: 1px solid rgba(215,38,56,0.2);
+    margin-bottom: 1rem;
+  }
+
+  .props-impact-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #D72638;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+
+  .props-impact-text {
+    color: rgba(255,255,255,0.9);
+    line-height: 1.5;
+  }
+
+  .props-pillars-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #E5E2D9;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .props-pillars {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+  }
+
+  .props-pillars li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .props-pillars li svg {
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  .props-conexion {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.875rem;
+    font-style: italic;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 0.75rem;
+    line-height: 1.5;
+  }
+</style>

@@ -1,0 +1,181 @@
+---
+---
+
+<section class="leona-section">
+  <div class="leona-container">
+    <div class="leona-header">
+      <div class="leona-symbol">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 110-16 8 8 0 010 16zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+        </svg>
+      </div>
+      <h2 class="leona-title">La Leona de Chincha</h2>
+      <p class="leona-intro">La Leona no es un dibujo simpático: es el resumen visual de toda la narrativa. Protege, lidera, lucha y defiende.</p>
+    </div>
+
+    <div class="leona-grid">
+      <div class="leona-card">
+        <div class="leona-card-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </div>
+        <h3 class="leona-card-title">Protección</h3>
+        <p class="leona-card-desc">La leona protege a sus cachorros. Zinthia protege a los ciudadanos de Chincha.</p>
+        <span class="leona-tag">Seguridad · Salud · Agua</span>
+      </div>
+
+      <div class="leona-card">
+        <div class="leona-card-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3 class="leona-card-title">Valentía</h3>
+        <p class="leona-card-desc">Las leonas cazan y lideran la manada. Liderazgo y fuerza femenina.</p>
+        <span class="leona-tag">Liderazgo · Corrupción</span>
+      </div>
+
+      <div class="leona-card">
+        <div class="leona-card-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </div>
+        <h3 class="leona-card-title">Madre luchadora</h3>
+        <p class="leona-card-desc">Conecta con la identidad real de Zinthia como mamá. La maternidad no es adorno, es el origen.</p>
+        <span class="leona-tag">Madres · Familias</span>
+      </div>
+
+      <div class="leona-card">
+        <div class="leona-card-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <h3 class="leona-card-title">Lucha contra la injusticia</h3>
+        <p class="leona-card-desc">Una leona que defiende a su manada de la corrupción y la injusticia.</p>
+        <span class="leona-tag">Justicia · Transparencia</span>
+      </div>
+    </div>
+
+    <div class="leona-footer">
+      <p>"Cuando la injusticia aparece, una leona no se queda callada."</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .leona-section {
+    padding: 5rem 1rem 3rem;
+    background: #282525;
+  }
+
+  @media (min-width: 768px) {
+    .leona-section { padding: 8rem 1rem 3rem; }
+  }
+
+  .leona-container { max-width: 72rem; margin: 0 auto; }
+
+  .leona-header { text-align: center; margin-bottom: 4rem; }
+
+  .leona-symbol {
+    width: 5rem;
+    height: 5rem;
+    background: #D72638;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+  }
+
+  .leona-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.25rem;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .leona-title { font-size: 3rem; }
+  }
+
+  .leona-intro {
+    color: rgba(229,226,217,0.7);
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  .leona-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .leona-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .leona-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .leona-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(4px);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: background 0.2s;
+  }
+
+  .leona-card:hover { background: rgba(255,255,255,0.1); }
+
+  .leona-card-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    background: #D72638;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+
+  .leona-card-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.5rem;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .leona-card-desc {
+    color: rgba(229,226,217,0.7);
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .leona-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: #E81A93;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .leona-footer {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .leona-footer p {
+    color: rgba(229,226,217,0.6);
+    font-size: 1.125rem;
+    font-style: italic;
+  }
+</style>

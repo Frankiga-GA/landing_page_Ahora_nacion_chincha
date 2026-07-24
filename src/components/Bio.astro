@@ -1,0 +1,163 @@
+---
+---
+
+<section id="bio" class="bio-section">
+  <div class="bio-container">
+    <h2 class="bio-title">Hija de la educación pública</h2>
+    <p class="bio-intro">
+      Nacida en San Pedro de Huacarpana, criada en Pueblo Nuevo, vive en Sunampe.
+      Un viaje que recorre toda la provincia de Chincha.
+    </p>
+
+    <div class="bio-grid">
+      <div class="bio-card">
+        <div class="bio-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="bio-step">Nacimiento</h3>
+        <p class="bio-place">San Pedro de Huacarpana</p>
+        <p class="bio-desc">El distrito más alejado y serrano de la provincia. Conoce Chincha desde su rincón más postergado.</p>
+      </div>
+
+      <div class="bio-card">
+        <div class="bio-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M12 14l9-5-9-5-9 5 9 5z" />
+            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+          </svg>
+        </div>
+        <h3 class="bio-step">Infancia y colegio</h3>
+        <p class="bio-place">Pueblo Nuevo</p>
+        <p class="bio-desc">El distrito más grande y emergente. Toda su educación fue pública. Allí se formó su carácter de lucha.</p>
+      </div>
+
+      <div class="bio-card">
+        <div class="bio-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+        </div>
+        <h3 class="bio-step">Vida adulta</h3>
+        <p class="bio-place">Sunampe</p>
+        <p class="bio-desc">Donde vive con sus hijos. Representa el presente: una madre que trabaja y educa a su familia en Chincha.</p>
+      </div>
+    </div>
+
+    <div class="bio-story">
+      <p>"Nací en San Pedro de Huacarpana, crecí en Pueblo Nuevo y ahora vivo con mis hijos en Sunampe. Estudié en colegio público y en la San Luis Gonzaga, la universidad pública de Ica. Soy abogada, empresaria y una mamá leona que quiere convertir a Chincha en una ciudad moderna, segura, donde nuestras familias salgan adelante y nuestros hijos no tengan que irse para estudiar o trabajar."</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bio-section {
+    padding: 5rem 1rem;
+    background: #FAFAFA;
+  }
+
+  @media (min-width: 768px) {
+    .bio-section { padding: 8rem 1rem; }
+  }
+
+  .bio-container {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .bio-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.25rem;
+    color: #282525;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .bio-title { font-size: 3rem; }
+  }
+
+  .bio-intro {
+    text-align: center;
+    color: rgba(40,37,37,0.7);
+    max-width: 42rem;
+    margin: 0 auto 4rem;
+    line-height: 1.625;
+  }
+
+  .bio-grid {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .bio-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .bio-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid #E5E2D9;
+  }
+
+  .bio-icon {
+    width: 4rem;
+    height: 4rem;
+    background: #D72638;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+
+  .bio-step {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.5rem;
+    color: #D72638;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+
+  .bio-place {
+    font-weight: 700;
+    color: #282525;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .bio-desc {
+    color: rgba(40,37,37,0.6);
+    font-size: 0.875rem;
+  }
+
+  .bio-story {
+    background: #282525;
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .bio-story { padding: 3rem; }
+  }
+
+  .bio-story p {
+    color: #E5E2D9;
+    font-size: 1.125rem;
+    line-height: 1.625;
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .bio-story p { font-size: 1.25rem; }
+  }
+</style>

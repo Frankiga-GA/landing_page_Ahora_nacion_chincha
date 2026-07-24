@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Bio from '../components/Bio.astro';
+import Leona from '../components/Leona.astro';
+import Propuestas from '../components/Propuestas.astro';
+import Unete from '../components/Unete.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout>
+  <main>
+    <Nav />
+    <div data-hero>
+      <Hero />
+    </div>
+    <div data-animate><Bio /></div>
+    <div data-animate><Leona /></div>
+    <div data-animate><Propuestas /></div>
+    <div data-animate><Unete /></div>
+    <Footer />
+  </main>
+
+  <script>
+    import '../scripts/interacciones.js';
+  </script>
+</BaseLayout>

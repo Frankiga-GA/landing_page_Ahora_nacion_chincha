@@ -1,0 +1,132 @@
+[
+  {
+    "id": 1,
+    "eje": "Ciudad Moderna",
+    "titulo": "Costa Verde de Chincha",
+    "tagline": "Una Costa Verde para todos los chinchanos",
+    "dato": "Chincha tiene 20 km de litoral que no generan ningún servicio, empleo ni espacio de recreación formal para sus familias.",
+    "pilares": [
+      "Bajada de Socorro: recuperación, iluminación y seguridad del acceso al mar",
+      "Malecón de Tambo de Mora: primer malecón costero con servicios para familias",
+      "Ciclovías integradas que conecten los cuatro distritos urbanos con la costa"
+    ],
+    "conexion": "La costa de Chincha pertenece a todos los chinchanos, no a unos pocos. La leona defiende el derecho de sus familias a tener un lugar propio de descanso, orgullo y oportunidad."
+  },
+  {
+    "id": 2,
+    "eje": "Economía y Oportunidades",
+    "titulo": "Caja Chincha",
+    "tagline": "Los jóvenes y emprendedores necesitan créditos justos",
+    "dato": "50,000 electores tienen entre 18 y 29 años en Chincha. Muchos tienen ideas de negocio pero no acceso a capital semilla.",
+    "pilares": [
+      "1er Préstamo Joven (18-22 años): microcrédito para estudios o primer emprendimiento",
+      "SoyEmprendedor: línea de crédito productivo para comerciantes y emprendedores",
+      "AgroCrece: crédito preferencial para agricultores rurales que tecnifiquen"
+    ],
+    "conexion": "Zinthia estudió en universidad pública porque no tuvo una familia con dinero que le diera un empujón. La Caja Chincha es ese empujón que ella no tuvo."
+  },
+  {
+    "id": 3,
+    "eje": "Economía y Oportunidades",
+    "titulo": "Escuela de Negocios y Coworking",
+    "tagline": "En Chincha cuna de innovadores y emprendedores",
+    "dato": "No existe un espacio público de innovación y emprendimiento en Chincha. Los jóvenes tienen que viajar a Lima o Ica, o desistir.",
+    "pilares": [
+      "Incubadora de Negocios: programa de 3 a 6 meses para emprendedores",
+      "Coworking Municipal: espacio físico moderno con Wi-Fi, salas de reuniones y más",
+      "InnovaChincha: concurso anual de innovación tecnológica e inteligencia artificial"
+    ],
+    "conexion": "La leona no solo defiende a su manada: la fortalece. La Escuela de Negocios es donde nace la próxima generación de líderes chinchanos."
+  },
+  {
+    "id": 4,
+    "eje": "Ciudad Moderna",
+    "titulo": "Transporte Público Integrado",
+    "tagline": "Chincha merece movilidad digna",
+    "dato": "Miles de trabajadores y estudiantes pasan horas al día en transporte informal e inseguro.",
+    "pilares": [
+      "Reorganización de rutas de transporte público",
+      "Paraderos formales con información en tiempo real",
+      "Tarifa integrada y accesible para estudiantes y adultos mayores"
+    ],
+    "conexion": "Una mamá leona quiere que sus hijos lleguen seguros a casa. Un trabajador chinchano merece movilidad digna."
+  },
+  {
+    "id": 5,
+    "eje": "Economía y Oportunidades",
+    "titulo": "Mercado Mayorista",
+    "tagline": "Comercio justo para los que producen y venden",
+    "dato": "Los comerciantes y agricultores de Chincha no tienen un centro de comercialización formal y competitivo.",
+    "pilares": [
+      "Construcción de un mercado mayorista con estándares modernos",
+      "Zona de carga y descarga con logística eficiente",
+      "Puestos formales con condiciones sanitarias adecuadas"
+    ],
+    "conexion": "La leona defiende el trabajo digno. Cada comerciante chinchano merece un lugar justo donde vender y crecer."
+  },
+  {
+    "id": 6,
+    "eje": "Seguridad y Bienestar",
+    "titulo": "Nuevo Hospital de Pueblo Nuevo",
+    "tagline": "Salud digna para nuestras familias",
+    "dato": "Pueblo Nuevo, el distrito más grande de la provincia, no tiene un hospital que atienda a su creciente población.",
+    "pilares": [
+      "Construcción de un hospital de nivel II-1 en Pueblo Nuevo",
+      "Equipamiento moderno con diagnóstico por imágenes y laboratorio",
+      "Ampliación de atenciones especializadas para madres y niños"
+    ],
+    "conexion": "Una madre que ha cuidado a sus hijos sabe lo que es velar por la salud de su familia. Zinthia llevará salud digna a cada rincón de Chincha."
+  },
+  {
+    "id": 7,
+    "eje": "Seguridad y Bienestar",
+    "titulo": "Delincuencia Cero",
+    "tagline": "Chincha segura, familias tranquilas",
+    "dato": "La percepción de inseguridad es la principal preocupación de los chinchanos. Es prioridad emocional máxima.",
+    "pilares": [
+      "Cámaras de vigilancia inteligentes en puntos críticos",
+      "Serenazgo 24/7 con capacitación y equipamiento",
+      "Alumbrado público LED en zonas identificadas como inseguras"
+    ],
+    "conexion": "Una leona protege a su manada. Zinthia no descansará hasta que cada chinchano pueda caminar tranquilo por su barrio."
+  },
+  {
+    "id": 8,
+    "eje": "Ciudad Moderna",
+    "titulo": "Marca Chincha y Ruta Turística",
+    "tagline": "Chincha tiene identidad, tiene destino",
+    "dato": "Chincha tiene un enorme potencial turístico (playa, historia, gastronomía, cultura afroperuana) sin explotar ni promocionar.",
+    "pilares": [
+      "Creación de la marca 'Chincha' con identidad propia",
+      "Ruta turística que conecte playa, campo y ciudad",
+      "Ferias gastronómicas y culturales permanentes"
+    ],
+    "conexion": "La tierra que vio nacer a Zinthia merece ser mostrada al mundo con orgullo. Chincha tiene historia, cultura y futuro."
+  },
+  {
+    "id": 9,
+    "eje": "Ciudad Moderna",
+    "titulo": "La 1ra Provincia Digital del Perú",
+    "tagline": "Chincha digital, moderna y conectada",
+    "dato": "Chincha puede ser la primera provincia del Perú con gobierno digital pleno: trámites, pagos y servicios en línea.",
+    "pilares": [
+      "Plataforma de trámites municipales 100% en línea",
+      "Wi-Fi público gratuito en plazas y espacios clave",
+      "Capacitación digital para adultos mayores y emprendedores"
+    ],
+    "conexion": "La leona camina hacia el futuro. Una Chincha digital significa menos colas, menos corrupción y más oportunidades para todos."
+  },
+  {
+    "id": 10,
+    "eje": "Seguridad y Bienestar",
+    "titulo": "Agua para Todos",
+    "tagline": "Agua potable: un derecho, no un privilegio",
+    "dato": "Familias en distritos rurales como San Pedro de Huacarpana, Chavín y San Juan de Yanac no tienen acceso continuo a agua potable.",
+    "pilares": [
+      "Ampliación de la red de agua potable a distritos rurales",
+      "Plantas de tratamiento de agua descentralizadas",
+      "Programa de saneamiento básico para comunidades alejadas"
+    ],
+    "conexion": "Zinthia nació en San Pedro de Huacarpana. Sabe lo que es vivir sin agua. La leona llevará agua donde nunca llegó."
+  }
+]
