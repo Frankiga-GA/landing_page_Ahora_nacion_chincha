@@ -10,7 +10,8 @@
     "audit": "npm audit"
   },
   "dependencies": {
+    "@astrojs/vercel": "^8.2.11",
+    "@supabase/supabase-js": "^2.112.0",
     "astro": "^5.0.0"
-  },
-  "devDependencies": {}
+  }
 }

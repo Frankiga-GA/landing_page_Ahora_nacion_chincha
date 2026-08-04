@@ -1,11 +1,226 @@
 ---
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+
+const DISTRITOS = [
+  'Chincha Alta', 'Pueblo Nuevo', 'Grocio Prado', 'Alto Larán',
+  'Sunampe', 'Chincha Baja', 'Tambo de Mora', 'El Carmen', 'Otro',
+];
+
+const PERFILES = [
+  'Estudiante', 'Profesional', 'Técnico', 'Emprendedor',
+  'Comerciante', 'Agricultor', 'Trabajador independiente', 'Otro',
+];
+
+const HABILIDADES = [
+  'Diseño gráfico', 'Edición de video', 'Fotografía', 'Producción audiovisual',
+  'Redes sociales', 'TikTok', 'Facebook', 'Instagram', 'Community Manager',
+  'Marketing', 'Publicidad', 'Organización de eventos', 'Logística', 'Tecnología',
+  'Programación', 'Inteligencia Artificial', 'Comunicación', 'Relaciones Públicas',
+  'Oratoria', 'Música', 'Deportes', 'Educación', 'Salud', 'Derecho',
+  'Administración', 'Otro',
+];
+
+const COMO_AYUDAR = [
+  'Difundiendo contenido', 'Creando videos', 'Diseñando publicaciones',
+  'Tomando fotografías', 'Grabando eventos', 'Organización de actividades',
+  'Apoyo en campañas digitales', 'Convocando jóvenes', 'Voluntariado en eventos',
+  'Capacitando personas', 'Otro',
+];
+
+const DISPONIBILIDAD = ['1 a 2 horas', '3 a 5 horas', 'Más de 5 horas', 'Solo fines de semana', 'Según necesidad'];
+
+const REDES = ['Facebook', 'TikTok', 'Instagram', 'WhatsApp', 'Telegram', 'LinkedIn'];
 ---
 
 <section id="unete" class="unete-section">
   <div class="unete-container">
     <div class="unete-header">
       <h2 class="unete-title">Únete a La Manada</h2>
-      <p class="unete-sub">No compramos votos, ganamos confianza. <br />Si deseas ser parte de esta manada escríbenos en nuestras principales redes sociales:</p>
+      <p class="unete-sub">
+        Construyamos juntos el futuro de Chincha. Completa el formulario oficial y
+        ayúdanos a conocerte para integrarte al equipo donde más puedas aportar.
+      </p>
+    </div>
+
+    <form id="manada-form" class="form-card">
+      <fieldset class="fset">
+        <legend class="fset-title">Información personal</legend>
+        <div class="field-grid">
+          <label class="field field-full">
+            <span class="label">Nombre completo <em>*</em></span>
+            <input type="text" name="nombre_completo" required autocomplete="name" />
+          </label>
+          <label class="field">
+            <span class="label">Edad</span>
+            <input type="number" name="edad" min="1" max="120" inputmode="numeric" autocomplete="bday" />
+          </label>
+          <label class="field">
+            <span class="label">Fecha de nacimiento</span>
+            <input type="date" name="fecha_nacimiento" />
+          </label>
+          <label class="field">
+            <span class="label">Celular (WhatsApp)</span>
+            <input type="tel" name="celular" inputmode="tel" placeholder="987 654 321" autocomplete="tel" />
+          </label>
+          <label class="field">
+            <span class="label">Correo electrónico <em>*</em></span>
+            <input type="email" name="correo" required autocomplete="email" />
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fset">
+        <legend class="fset-title">Distrito donde vives</legend>
+        <div class="chip-grid">
+          {DISTRITOS.map((d) => (
+            <label class="chip">
+              <input type="radio" name="distrito" value={d} />
+              <span>{d}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset class="fset">
+        <legend class="fset-title">Perfil</legend>
+        <p class="fset-hint">Actualmente eres:</p>
+        <div class="chip-grid">
+          {PERFILES.map((p) => (
+            <label class="chip">
+              <input type="radio" name="perfil" value={p} />
+              <span>{p}</span>
+            </label>
+          ))}
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span class="label">Carrera o profesión</span>
+            <input type="text" name="carrera_profesion" />
+          </label>
+          <label class="field">
+            <span class="label">Centro de estudios o empresa</span>
+            <input type="text" name="centro_estudios_empresa" />
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fset">
+        <legend class="fset-title">Habilidades</legend>
+        <p class="fset-hint">¿Qué sabes hacer? (puedes marcar varias)</p>
+        <div class="chip-grid">
+          {HABILIDADES.map((h) => (
+            <label class="chip">
+              <input type="checkbox" name="habilidades" value={h} />
+              <span>{h}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset class="fset">
+        <legend class="fset-title">¿Cómo te gustaría ayudar?</legend>
+        <p class="fset-hint">(puedes marcar varias)</p>
+        <div class="chip-grid">
+          {COMO_AYUDAR.map((c) => (
+            <label class="chip">
+              <input type="checkbox" name="como_ayudar" value={c} />
+              <span>{c}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset class="fset">
+        <legend class="fset-title">Disponibilidad</legend>
+        <p class="fset-hint">¿Cuánto tiempo podrías dedicar?</p>
+        <div class="chip-grid">
+          {DISPONIBILIDAD.map((d) => (
+            <label class="chip">
+              <input type="radio" name="disponibilidad" value={d} />
+              <span>{d}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset class="fset">
+        <legend class="fset-title">Redes sociales</legend>
+        <p class="fset-hint">¿Qué redes utilizas? (puedes marcar varias)</p>
+        <div class="chip-grid">
+          {REDES.map((r) => (
+            <label class="chip">
+              <input type="checkbox" name="redes_sociales" value={r} />
+              <span>{r}</span>
+            </label>
+          ))}
+        </div>
+        <p class="fset-hint mt-6">¿Te gustaría formar parte de los grupos oficiales de La Manada? <em>*</em></p>
+        <div class="chip-grid">
+          <label class="chip">
+            <input type="radio" name="grupos_oficiales" value="si" required />
+            <span>Sí</span>
+          </label>
+          <label class="chip">
+            <input type="radio" name="grupos_oficiales" value="no" />
+            <span>No</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fset">
+        <legend class="fset-title">Liderazgo</legend>
+        <p class="fset-hint">¿Te gustaría coordinar un equipo de jóvenes?</p>
+        <div class="chip-grid">
+          <label class="chip">
+            <input type="radio" name="coordinar_equipo" value="si" />
+            <span>Sí</span>
+          </label>
+          <label class="chip">
+            <input type="radio" name="coordinar_equipo" value="no" />
+            <span>No</span>
+          </label>
+          <label class="chip">
+            <input type="radio" name="coordinar_equipo" value="talvez" />
+            <span>Tal vez</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fset">
+        <legend class="fset-title">Motivación</legend>
+        <label class="field">
+          <span class="label">¿Por qué quieres formar parte de La Manada de Chincha?</span>
+          <textarea name="motivacion" rows="4"></textarea>
+        </label>
+        <label class="field">
+          <span class="label">¿Cuál crees que es el principal problema que tiene Chincha y cómo te gustaría contribuir a solucionarlo?</span>
+          <textarea name="problema_contribucion" rows="4"></textarea>
+        </label>
+      </fieldset>
+
+      <label class="consent">
+        <input type="checkbox" name="consentimiento" value="1" required />
+        <span>
+          Autorizo el tratamiento de mis datos personales conforme a la Ley N° 29733
+          (Protección de Datos Personales) con fines de contacto e integración al equipo
+          de La Manada de Chincha.
+        </span>
+      </label>
+
+      {turnstileSiteKey && (
+        <div class="turnstile-wrap">
+          <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
+        </div>
+      )}
+
+      <input type="text" name="website" class="honeypot" tabindex="-1" aria-hidden="true" autocomplete="off" />
+
+      <button type="submit" id="manada-submit" class="submit-btn">Únete a La Manada</button>
+      <p id="manada-status" class="status hidden" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="unete-social-note">
+      <p>¿Prefieres escribirnos? Encuéntranos en nuestras redes sociales:</p>
     </div>
 
     <div class="unete-social">
@@ -40,6 +255,65 @@
   </div>
 </section>
 
+{turnstileSiteKey && (
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+)}
+
+<script>
+  const form = document.getElementById('manada-form');
+  if (form) {
+    const status = document.getElementById('manada-status');
+    const submitBtn = document.getElementById('manada-submit');
+    let sending = false;
+
+    function mostrar(mensaje, ok) {
+      status.textContent = mensaje;
+      status.classList.remove('hidden', 'status-ok', 'status-error');
+      status.classList.add(ok ? 'status-ok' : 'status-error');
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (sending) return;
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const body = new FormData(form);
+      if (body.get('website')) return; // honeypot: los bots no llegan aquí
+
+      let token = body.get('cf-turnstile-response')?.toString() ?? '';
+      if (!token && window.turnstile) {
+        const widget = document.querySelector('.cf-turnstile');
+        if (widget) token = window.turnstile.getResponse(widget) ?? '';
+      }
+      if (token) body.set('cf-turnstile-response', token);
+
+      sending = true;
+      submitBtn.disabled = true;
+      mostrar('Enviando...', true);
+
+      try {
+        const res = await fetch('/api/voluntarios', { method: 'POST', body });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok) {
+          mostrar('¡Bienvenido a La Manada! Pronto nos comunicaremos contigo.', true);
+          form.reset();
+          if (window.turnstile) window.turnstile.reset();
+        } else {
+          mostrar(data.error ?? 'No se pudo enviar. Inténtalo nuevamente.', false);
+        }
+      } catch {
+        mostrar('Error de conexión. Verifica tu internet e inténtalo nuevamente.', false);
+      }
+
+      sending = false;
+      submitBtn.disabled = false;
+    });
+  }
+</script>
+
 <style>
   .unete-section {
     padding: 5rem 1rem;
@@ -50,7 +324,7 @@
     .unete-section { padding: 8rem 1rem; }
   }
 
-  .unete-container { max-width: 48rem; margin: 0 auto; }
+  .unete-container { max-width: 56rem; margin: 0 auto; }
 
   .unete-header { text-align: center; margin-bottom: 3rem; }
 
@@ -67,9 +341,220 @@
   }
 
   .unete-sub {
-    color: rgba(255,255,255,0.9);
+    color: rgba(255, 255, 255, 0.9);
     font-size: 1.125rem;
     line-height: 1.6;
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  .form-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (min-width: 768px) {
+    .form-card { padding: 2.5rem; }
+  }
+
+  .fset {
+    border: none;
+    margin: 0 0 2rem;
+    padding: 0;
+  }
+
+  .fset-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.25rem;
+    color: #D72638;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: 2px solid rgba(215, 38, 56, 0.15);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .fset-hint {
+    color: rgba(40, 37, 37, 0.7);
+    font-size: 0.9rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .fset-hint em { color: #D72638; }
+
+  .field-grid {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .field-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .field-full { grid-column: 1 / -1; }
+
+  .label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #282525;
+  }
+
+  .label em { color: #D72638; }
+
+  .field input,
+  .field textarea {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9375rem;
+    color: #282525;
+    border: 1px solid rgba(40, 37, 37, 0.2);
+    border-radius: 0.5rem;
+    padding: 0.6rem 0.85rem;
+    background: #FAFAFA;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 5rem;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: #D72638;
+    box-shadow: 0 0 0 3px rgba(215, 38, 56, 0.15);
+    background: white;
+  }
+
+  .chip-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .chip input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .chip span {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    border: 1px solid rgba(40, 37, 37, 0.25);
+    border-radius: 9999px;
+    background: white;
+    color: #282525;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .chip span:hover {
+    border-color: #D72638;
+  }
+
+  .chip input:checked + span {
+    background: #D72638;
+    border-color: #D72638;
+    color: white;
+  }
+
+  .chip input:focus-visible + span {
+    outline: 2px solid #D72638;
+    outline-offset: 2px;
+  }
+
+  .mt-6 { margin-top: 1.5rem; }
+
+  .consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: #FAFAFA;
+    border: 1px solid rgba(40, 37, 37, 0.15);
+    border-radius: 0.5rem;
+    padding: 0.9rem 1rem;
+    margin-bottom: 1.25rem;
+    cursor: pointer;
+    font-size: 0.8125rem;
+    color: rgba(40, 37, 37, 0.8);
+    line-height: 1.5;
+  }
+
+  .consent input {
+    margin-top: 0.2rem;
+    accent-color: #D72638;
+  }
+
+  .turnstile-wrap {
+    margin-bottom: 1.25rem;
+    min-height: 4.5rem;
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+
+  .submit-btn {
+    display: block;
+    width: 100%;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: white;
+    background: #D72638;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .submit-btn:hover { background: #b51e2e; }
+
+  .submit-btn:active { transform: scale(0.99); }
+
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .status {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  .status-ok { color: #1a7f37; }
+  .status-error { color: #D72638; }
+
+  .hidden { display: none; }
+
+  .unete-social-note {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 3rem 0 1.5rem;
+    font-size: 1rem;
   }
 
   .unete-social {
@@ -90,7 +575,7 @@
     align-items: center;
     gap: 0.75rem;
     padding: 1.5rem 1rem;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 1rem;
     text-decoration: none;
     color: white;
@@ -98,7 +583,7 @@
   }
 
   .social-card:hover {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-4px);
   }
 
