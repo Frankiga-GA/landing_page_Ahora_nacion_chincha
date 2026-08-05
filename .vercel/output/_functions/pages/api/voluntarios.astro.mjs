@@ -1,17 +1,7 @@
+import { D as DISTRITOS, P as PERFILES, H as HABILIDADES, C as COMO_AYUDAR } from '../../chunks/opciones_Owe3bcrJ.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const prerender = false;
-const DISTRITOS = [
-  "Chincha Alta",
-  "Pueblo Nuevo",
-  "Grocio Prado",
-  "Alto Larán",
-  "Sunampe",
-  "Chincha Baja",
-  "Tambo de Mora",
-  "El Carmen",
-  "Otro"
-];
 const JSON_HEADERS = { "Content-Type": "application/json; charset=utf-8" };
 function json(status, body) {
   return new Response(JSON.stringify(body), { status, headers: JSON_HEADERS });
@@ -22,6 +12,9 @@ function solo(blob, name) {
 function soloDeLista(blob, name, list) {
   const v = solo(blob, name);
   return list.includes(v) ? v : "";
+}
+function multiDeLista(blob, name, list) {
+  return blob.getAll(name).map((v) => v.toString()).filter((v) => list.includes(v));
 }
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const POST = async ({ request }) => {
@@ -47,6 +40,25 @@ const POST = async ({ request }) => {
   const distrito = soloDeLista(fd, "distrito", DISTRITOS);
   if (!distrito) {
     return json(400, { error: "Selecciona el distrito donde vives." });
+  }
+  const distritoOtro = solo(fd, "distrito_otro");
+  if (distrito === "Otro" && distritoOtro.length < 2) {
+    return json(400, { error: "Indica tu distrito." });
+  }
+  const perfil = soloDeLista(fd, "perfil", PERFILES);
+  const perfilOtro = solo(fd, "perfil_otro");
+  if (perfil === "Otro" && perfilOtro.length < 2) {
+    return json(400, { error: "Indica tu perfil personalizado." });
+  }
+  const habilidades = multiDeLista(fd, "habilidades", HABILIDADES);
+  const habilidadesOtro = solo(fd, "habilidades_otro");
+  if (habilidades.includes("Otro") && habilidadesOtro.length < 2) {
+    return json(400, { error: "Indica tu habilidad personalizada." });
+  }
+  const comoAyudar = multiDeLista(fd, "como_ayudar", COMO_AYUDAR);
+  const comoAyudarOtro = solo(fd, "como_ayudar_otro");
+  if (comoAyudar.includes("Otro") && comoAyudarOtro.length < 2) {
+    return json(400, { error: "Indica cómo te gustaría ayudar." });
   }
   solo(fd, "cf-turnstile-response");
   {

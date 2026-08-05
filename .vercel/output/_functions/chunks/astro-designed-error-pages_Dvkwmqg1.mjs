@@ -1,4 +1,4 @@
-import { am as NOOP_MIDDLEWARE_HEADER, an as REDIRECT_STATUS_CODES, A as AstroError, ao as ActionsReturnedInvalidDataError, V as DEFAULT_404_COMPONENT } from './astro/server_DWGnF2Hb.mjs';
+import { an as NOOP_MIDDLEWARE_HEADER, ao as REDIRECT_STATUS_CODES, A as AstroError, ap as ActionsReturnedInvalidDataError, W as DEFAULT_404_COMPONENT } from './astro/server_CBEUGtRa.mjs';
 import { parse, stringify } from 'devalue';
 import { escape } from 'html-escaper';
 
@@ -12,7 +12,7 @@ const ACTION_QUERY_PARAMS$1 = {
   actionName: "_action"};
 const ACTION_RPC_ROUTE_PATTERN = "/_actions/[...path]";
 
-const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "SITE": "https://zinthiagaray.pe", "SSR": true};
+const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "PUBLIC_TURNSTILE_SITE_KEY": "", "SITE": "https://zinthiagaray.pe", "SSR": true};
 const ACTION_QUERY_PARAMS = ACTION_QUERY_PARAMS$1;
 const codeToStatusMap = {
   // Implemented from IANA HTTP Status Code Registry

@@ -1,83 +1,15 @@
 import type { APIRoute } from 'astro';
 import { createClient } from '@supabase/supabase-js';
+import {
+  DISTRITOS,
+  PERFILES,
+  HABILIDADES,
+  COMO_AYUDAR,
+  DISPONIBILIDAD,
+  REDES,
+} from '../../lib/opciones';
 
 export const prerender = false;
-
-const DISTRITOS = [
-  'Chincha Alta',
-  'Pueblo Nuevo',
-  'Grocio Prado',
-  'Alto Larán',
-  'Sunampe',
-  'Chincha Baja',
-  'Tambo de Mora',
-  'El Carmen',
-  'Otro',
-];
-
-const PERFILES = [
-  'Estudiante',
-  'Profesional',
-  'Técnico',
-  'Emprendedor',
-  'Comerciante',
-  'Agricultor',
-  'Trabajador independiente',
-  'Otro',
-];
-
-const HABILIDADES = [
-  'Diseño gráfico',
-  'Edición de video',
-  'Fotografía',
-  'Producción audiovisual',
-  'Redes sociales',
-  'TikTok',
-  'Facebook',
-  'Instagram',
-  'Community Manager',
-  'Marketing',
-  'Publicidad',
-  'Organización de eventos',
-  'Logística',
-  'Tecnología',
-  'Programación',
-  'Inteligencia Artificial',
-  'Comunicación',
-  'Relaciones Públicas',
-  'Oratoria',
-  'Música',
-  'Deportes',
-  'Educación',
-  'Salud',
-  'Derecho',
-  'Administración',
-  'Otro',
-];
-
-const COMO_AYUDAR = [
-  'Difundiendo contenido',
-  'Creando videos',
-  'Diseñando publicaciones',
-  'Tomando fotografías',
-  'Grabando eventos',
-  'Organización de actividades',
-  'Apoyo en campañas digitales',
-  'Convocando jóvenes',
-  'Voluntariado en eventos',
-  'Capacitando personas',
-  'Otro',
-];
-
-const DISPONIBILIDAD = [
-  '1 a 2 horas',
-  '3 a 5 horas',
-  'Más de 5 horas',
-  'Solo fines de semana',
-  'Según necesidad',
-];
-
-const REDES = ['Facebook', 'TikTok', 'Instagram', 'WhatsApp', 'Telegram', 'LinkedIn'];
 
 const JSON_HEADERS = { 'Content-Type': 'application/json; charset=utf-8' };
 
@@ -132,6 +64,28 @@ export const POST: APIRoute = async ({ request }) => {
   if (!distrito) {
     return json(400, { error: 'Selecciona el distrito donde vives.' });
   }
+  const distritoOtro = solo(fd, 'distrito_otro');
+  if (distrito === 'Otro' && distritoOtro.length < 2) {
+    return json(400, { error: 'Indica tu distrito.' });
+  }
+
+  const perfil = soloDeLista(fd, 'perfil', PERFILES);
+  const perfilOtro = solo(fd, 'perfil_otro');
+  if (perfil === 'Otro' && perfilOtro.length < 2) {
+    return json(400, { error: 'Indica tu perfil personalizado.' });
+  }
+
+  const habilidades = multiDeLista(fd, 'habilidades', HABILIDADES);
+  const habilidadesOtro = solo(fd, 'habilidades_otro');
+  if (habilidades.includes('Otro') && habilidadesOtro.length < 2) {
+    return json(400, { error: 'Indica tu habilidad personalizada.' });
+  }
+
+  const comoAyudar = multiDeLista(fd, 'como_ayudar', COMO_AYUDAR);
+  const comoAyudarOtro = solo(fd, 'como_ayudar_otro');
+  if (comoAyudar.includes('Otro') && comoAyudarOtro.length < 2) {
+    return json(400, { error: 'Indica cómo te gustaría ayudar.' });
+  }
 
   // Verificación Cloudflare Turnstile (anti-spam)
   const token = solo(fd, 'cf-turnstile-response');
@@ -162,11 +116,15 @@ export const POST: APIRoute = async ({ request }) => {
     celular: solo(fd, 'celular'),
     correo,
     distrito,
-    perfil: soloDeLista(fd, 'perfil', PERFILES),
-    carrera_profesion: solo(fd, 'carrera_profesion'),
-    centro_estudios_empresa: solo(fd, 'centro_estudios_empresa'),
-    habilidades: multiDeLista(fd, 'habilidades', HABILIDADES),
-    como_ayudar: multiDeLista(fd, 'como_ayudar', COMO_AYUDAR),
+    distrito_otro: distrito === 'Otro' ? distritoOtro : null,
+    perfil,
+    perfil_otro: perfil === 'Otro' ? perfilOtro : null,
+    carrera_profesion: perfil === 'Otro' ? '' : solo(fd, 'carrera_profesion'),
+    centro_estudios_empresa: perfil === 'Otro' ? '' : solo(fd, 'centro_estudios_empresa'),
+    habilidades,
+    habilidades_otro: habilidades.includes('Otro') ? habilidadesOtro : null,
+    como_ayudar: comoAyudar,
+    como_ayudar_otro: comoAyudar.includes('Otro') ? comoAyudarOtro : null,
     disponibilidad: soloDeLista(fd, 'disponibilidad', DISPONIBILIDAD),
     redes_sociales: multiDeLista(fd, 'redes_sociales', REDES),
     grupos_oficiales: solo(fd, 'grupos_oficiales') === 'si',

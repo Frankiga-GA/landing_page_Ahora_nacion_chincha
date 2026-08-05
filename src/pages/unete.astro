@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FormularioManada from '../components/FormularioManada.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Únete a La Manada — Zinthia Garay, Alcaldesa Provincial de Chincha"
+  description="Completa el formulario oficial y únete al equipo de La Manada de Chincha. Voluntarios, jóvenes y ciudadanos comprometidos con el futuro de la provincia."
+>
+  <main>
+    <a href="/" class="back-link">← Volver al inicio</a>
+    <FormularioManada />
+    <Footer />
+  </main>
+
+  <style>
+    .back-link {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      z-index: 60;
+      display: inline-block;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: white;
+      background: rgba(40, 37, 37, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 9999px;
+      padding: 0.5rem 1.1rem;
+      text-decoration: none;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s;
+    }
+
+    .back-link:hover { background: rgba(40, 37, 37, 0.85); }
+
+    @media (max-width: 639px) {
+      .back-link { position: relative; display: block; margin: 1rem 1rem 0; width: fit-content; }
+    }
+  </style>
+</BaseLayout>
