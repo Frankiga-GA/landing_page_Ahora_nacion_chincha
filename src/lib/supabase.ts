@@ -31,8 +31,9 @@ let client: SupabaseClient | null = null;
 
 function adminClient(): SupabaseClient | null {
   if (client) return client;
-  const url = (import.meta.env as Record<string, string>).SUPABASE_URL;
-  const key = (import.meta.env as Record<string, string>).SUPABASE_SERVICE_ROLE_KEY;
+  const env = import.meta.env as Record<string, string>;
+  const url = env.SUPABASE_URL ?? process.env.SUPABASE_URL;
+  const key = env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) return null;
   client = createClient(url, key);
   return client;

@@ -89,31 +89,33 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Verificación Cloudflare Turnstile (anti-spam)
+    const env = import.meta.env as Record<string, string>;
     const token = solo(fd, 'cf-turnstile-response');
-    const secret = (import.meta.env as Record<string, string>).TURNSTILE_SECRET_KEY;
+    const secret = env.TURNSTILE_SECRET_KEY ?? process.env.TURNSTILE_SECRET_KEY;
     if (!token || !secret) {
       return json(400, { error: 'No pudimos verificar que eres humano, vuelve a intentarlo.' });
     }
-    let verifyJson: { success?: boolean };
+    let verifyJson: { success?: boolean; 'error-codes'?: string[] };
     try {
       const verify = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({ secret, response: token }).toString(),
       });
-      verifyJson = (await verify.json()) as { success?: boolean };
+      verifyJson = (await verify.json()) as { success?: boolean; 'error-codes'?: string[] };
     } catch (error) {
       console.error('Turnstile siteverify error:', error);
       return json(500, { error: 'No pudimos verificar tu registro. Inténtalo en unos minutos.' });
     }
     if (!verifyJson.success) {
+      console.error('Turnstile verification failed:', verifyJson);
       return json(400, { error: 'Verificación anti-spam fallida. Inténtalo de nuevo.' });
     }
 
-    const supabaseUrl = (import.meta.env as Record<string, string>).SUPABASE_URL;
-    const supabaseKey = (import.meta.env as Record<string, string>).SUPABASE_SERVICE_ROLE_KEY;
+    const supabaseUrl = env.SUPABASE_URL ?? process.env.SUPABASE_URL;
+    const supabaseKey = env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
     if (!supabaseUrl || !supabaseKey) {
-      console.error('Supabase env missing. Check Vercel env vars: SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY');
+      console.error('Supabase env missing. Check SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY');
       return json(500, { error: 'La base de datos no está configurada.' });
     }
 

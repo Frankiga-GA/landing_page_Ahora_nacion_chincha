@@ -1,9 +1,0 @@
----
-import { cerrarSesion } from '../../lib/auth';
-
-export const prerender = false;
-
-cerrarSesion(Astro.cookies);
-
-return Astro.redirect('/admin/login');
----

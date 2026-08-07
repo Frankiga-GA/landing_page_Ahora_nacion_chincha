@@ -229,55 +229,68 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 )}
 
 <script>
-  const form = document.getElementById('manada-form');
+  interface TurnstileWindow extends Window {
+    turnstile?: {
+      getResponse: (el?: Element | null) => string;
+      reset: (el?: Element | null) => void;
+    };
+  }
+  declare const window: TurnstileWindow;
+
+  const form = document.getElementById('manada-form') as HTMLFormElement | null;
   if (form) {
     const status = document.getElementById('manada-status');
-    const submitBtn = document.getElementById('manada-submit');
+    const submitBtn = document.getElementById('manada-submit') as HTMLButtonElement | null;
     let sending = false;
 
-    function mostrar(mensaje, ok) {
+    function mostrar(mensaje: string, ok: boolean) {
+      if (!status) return;
       status.textContent = mensaje;
       status.classList.remove('hidden', 'status-ok', 'status-error');
       status.classList.add(ok ? 'status-ok' : 'status-error');
     }
 
-    const perfilRadios = form.querySelectorAll('input[name="perfil"]');
+    const perfilRadios = form.querySelectorAll<HTMLInputElement>('input[name="perfil"]');
     const perfilDetalle = document.getElementById('perfil-detalle');
     const perfilPanel = document.getElementById('panel-perfil');
-    const perfilInput = perfilPanel.querySelector('.otro-input');
+    const perfilInput = perfilPanel?.querySelector<HTMLInputElement>('.otro-input');
 
     function setPerfilOtro() {
       const esOtro = [...perfilRadios].some((r) => r.checked && r.value === 'Otro');
-      perfilPanel.classList.toggle('hidden', !esOtro);
-      perfilInput.required = esOtro;
-      perfilDetalle.querySelectorAll('input').forEach((el) => { el.disabled = esOtro; });
-      perfilDetalle.style.display = esOtro ? 'none' : '';
+      if (perfilPanel) perfilPanel.classList.toggle('hidden', !esOtro);
+      if (perfilInput) perfilInput.required = esOtro;
+      if (perfilDetalle) {
+        perfilDetalle.querySelectorAll<HTMLInputElement>('input').forEach((el) => { el.disabled = esOtro; });
+        perfilDetalle.style.display = esOtro ? 'none' : '';
+      }
     }
     perfilRadios.forEach((r) => r.addEventListener('change', setPerfilOtro));
 
-    function setUpRadioOtro(name, panelId) {
-      const radios = form.querySelectorAll(`input[name="${name}"]`);
+    function setUpRadioOtro(name: string, panelId: string) {
+      if (!form) return;
+      const radios = form.querySelectorAll<HTMLInputElement>(`input[name="${name}"]`);
       const panel = document.getElementById(panelId);
-      const input = panel.querySelector('.otro-input');
+      const input = panel?.querySelector<HTMLInputElement>('.otro-input');
       function update() {
         const esOtro = [...radios].some((r) => r.checked && r.value === 'Otro');
-        panel.classList.toggle('hidden', !esOtro);
-        input.required = esOtro;
+        if (panel) panel.classList.toggle('hidden', !esOtro);
+        if (input) input.required = esOtro;
       }
       radios.forEach((r) => r.addEventListener('change', update));
       update();
     }
 
-    function setCheckboxOtro(name, panelId) {
-      const cb = form.querySelector(`input[name="${name}"][value="Otro"]`);
+    function setCheckboxOtro(name: string, panelId: string) {
+      if (!form) return;
+      const cb = form.querySelector<HTMLInputElement>(`input[name="${name}"][value="Otro"]`);
       const panel = document.getElementById(panelId);
-      const input = panel.querySelector('.otro-input');
+      const input = panel?.querySelector<HTMLInputElement>('.otro-input');
       function update() {
-        const esOtro = cb.checked;
-        panel.classList.toggle('hidden', !esOtro);
-        input.required = esOtro;
+        const esOtro = Boolean(cb?.checked);
+        if (panel) panel.classList.toggle('hidden', !esOtro);
+        if (input) input.required = esOtro;
       }
-      cb.addEventListener('change', update);
+      cb?.addEventListener('change', update);
       update();
     }
 
@@ -305,7 +318,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
       if (token) body.set('cf-turnstile-response', token);
 
       sending = true;
-      submitBtn.disabled = true;
+      if (submitBtn) submitBtn.disabled = true;
       mostrar('Enviando...', true);
 
       try {
@@ -323,7 +336,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
       }
 
       sending = false;
-      submitBtn.disabled = false;
+      if (submitBtn) submitBtn.disabled = false;
     });
   }
 </script>

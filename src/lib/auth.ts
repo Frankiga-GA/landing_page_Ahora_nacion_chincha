@@ -7,7 +7,7 @@ const MAX_INTENTOS = 5;
 const VENTANA_MS = 15 * 60 * 1000;
 
 function envValue(key: string): string {
-  return (import.meta.env as Record<string, string>)[key] ?? '';
+  return ((import.meta.env as Record<string, string>)[key] ?? (process.env as Record<string, string>)[key] ?? '');
 }
 
 function hash(value: string): string {

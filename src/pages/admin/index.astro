@@ -27,6 +27,10 @@ function fmtFechaCorta(iso: string | null): string {
   return iso ? fmtFechaRegistro.format(new Date(iso)) : '—';
 }
 
+function fmtFechaHora(iso: string | null): string {
+  return iso ? fmtFecha.format(new Date(iso)) : '—';
+}
+
 function fmtLista(array: string[] | null, otro: string | null): string {
   const base = array ?? [];
   if (otro && base.includes('Otro')) return base.filter((v) => v !== 'Otro').concat(`Otro: ${otro}`).join(' · ');
@@ -127,7 +131,7 @@ function aTexto(v: string | null): string {
                 <td>{v.perfil === 'Otro' ? aTexto(v.perfil_otro) : aTexto(v.perfil)}</td>
                 <td>{aTexto(v.celular)}</td>
                 <td class="cell-mail">{aTexto(v.correo)}</td>
-                <td><span class="cell-trunc" title={fmtList(v.habilidades, v.habilidades_otro)}>{fmtList(v.habilidades, v.habilidades_otro)}</span></td>
+                <td><span class="cell-trunc" title={fmtLista(v.habilidades, v.habilidades_otro)}>{fmtLista(v.habilidades, v.habilidades_otro)}</span></td>
                 <td>
                   <details class="row-detail">
                     <summary>Ver todo</summary>
@@ -135,16 +139,16 @@ function aTexto(v: string | null): string {
                       <div><dt>Fecha de nacimiento</dt><dd>{fmtFechaCorta(v.fecha_nacimiento)}</dd></div>
                       <div><dt>Carrera o profesión</dt><dd>{aTexto(v.carrera_profesion)}</dd></div>
                       <div><dt>Centro de estudios / empresa</dt><dd>{aTexto(v.centro_estudios_empresa)}</dd></div>
-                      <div><dt>Habilidades</dt><dd>{fmtList(v.habilidades, v.habilidades_otro)}</dd></div>
-                      <div><dt>Cómo ayudaría</dt><dd>{fmtList(v.como_ayudar, v.como_ayudar_otro)}</dd></div>
+                      <div><dt>Habilidades</dt><dd>{fmtLista(v.habilidades, v.habilidades_otro)}</dd></div>
+                      <div><dt>Cómo ayudaría</dt><dd>{fmtLista(v.como_ayudar, v.como_ayudar_otro)}</dd></div>
                       <div><dt>Disponibilidad</dt><dd>{aTexto(v.disponibilidad)}</dd></div>
-                      <div><dt>Redes sociales</dt><dd>{fmtList(v.redes_sociales, null)}</dd></div>
+                      <div><dt>Redes sociales</dt><dd>{fmtLista(v.redes_sociales, null)}</dd></div>
                       <div><dt>Grupos oficiales</dt><dd>{v.grupos_oficiales ? 'Sí' : 'No'}</dd></div>
                       <div><dt>Coordinar equipo</dt><dd>{v.coordinar_equipo === 'no' ? 'No' : v.coordinar_equipo === 'si' ? 'Sí' : v.coordinar_equipo === 'talvez' ? 'Tal vez' : '—'}</dd></div>
                       <div class="detail-full"><dt>Motivación</dt><dd>{aTexto(v.motivacion)}</dd></div>
                       <div class="detail-full"><dt>Problema y contribución</dt><dd>{aTexto(v.problema_contribucion)}</dd></div>
                       <div><dt>Consentimiento (Ley 29733)</dt><dd>{v.consentimiento ? 'Sí' : 'No'}</dd></div>
-                      <div><dt>Registrado</dt><dd>{fmtFecha(v.creado_en)}</dd></div>
+                      <div><dt>Registrado</dt><dd>{fmtFechaHora(v.creado_en)}</dd></div>
                     </dl>
                   </details>
                 </td>
@@ -163,7 +167,7 @@ function aTexto(v: string | null): string {
     )}
   </main>
 
-  <script define:vars={{ VOLUNTARIOS: voluntarios }}>
+  <script is:inline define:vars={{ VOLUNTARIOS: voluntarios }}>
     document.getElementById('export-csv')?.addEventListener('click', () => {
       const columnas = [
         'Registro', 'Nombre completo', 'Edad', 'Fecha de nacimiento', 'Celular', 'Correo',

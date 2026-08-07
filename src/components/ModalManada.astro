@@ -40,14 +40,14 @@ const SHORT_ID = '-gUQ-X9OVcM';
 <script>
   const overlay = document.getElementById('video-modal');
   if (overlay) {
-    const frame = overlay.querySelector('.modal-frame');
+    const frame = overlay.querySelector<HTMLIFrameElement>('.modal-frame');
     const cierre = [document.getElementById('modal-close'), document.getElementById('modal-skip')];
 
     function cerrar() {
       if (frame) frame.src = '';
-      overlay.classList.add('hidden');
+      overlay?.classList.add('hidden');
       document.body.style.overflow = '';
-      overlay.removeAttribute('aria-hidden');
+      overlay?.removeAttribute('aria-hidden');
     }
 
     cierre.forEach((btn) => btn?.addEventListener('click', cerrar));
