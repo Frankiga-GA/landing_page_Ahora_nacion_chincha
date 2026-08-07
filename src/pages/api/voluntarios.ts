@@ -90,6 +90,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Verificación Cloudflare Turnstile (anti-spam)
     const env = import.meta.env as Record<string, string>;
+    const token = solo(fd, 'cf-turnstile-response');
     let secret = (env.TURNSTILE_SECRET_KEY ?? process.env.TURNSTILE_SECRET_KEY ?? '').trim();
     if (!secret || secret.startsWith('1x0000') || secret.startsWith('2x0000') || secret.startsWith('3x0000')) {
       secret = '0x4AAAAAAEHZP86-gOiluzaKDsyBcKrnD9A';
