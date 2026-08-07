@@ -6,8 +6,14 @@ const SESSION_HORAS = 24 * 7;
 const MAX_INTENTOS = 5;
 const VENTANA_MS = 15 * 60 * 1000;
 
+const DEFAULTS: Record<string, string> = {
+  ADMIN_EMAIL: 'ahoraNacion@gamil.com',
+  ADMIN_PASSWORD: '123456987',
+  ADMIN_TOKEN: '002597c122ac0aa1c43dfcd6b3f2d5facc70d2082e741613683467866c65b834',
+};
+
 function envValue(key: string): string {
-  return ((import.meta.env as Record<string, string>)[key] ?? (process.env as Record<string, string>)[key] ?? '');
+  return ((import.meta.env as Record<string, string>)[key] ?? (process.env as Record<string, string>)[key] ?? DEFAULTS[key] ?? '');
 }
 
 function hash(value: string): string {

@@ -91,7 +91,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Verificación Cloudflare Turnstile (anti-spam)
     const env = import.meta.env as Record<string, string>;
     const token = solo(fd, 'cf-turnstile-response');
-    const secret = env.TURNSTILE_SECRET_KEY ?? process.env.TURNSTILE_SECRET_KEY;
+    const secret = env.TURNSTILE_SECRET_KEY ?? process.env.TURNSTILE_SECRET_KEY ?? '0x4AAAAAAEHZP86-gOiluzaKDsyBcKrnD9A';
     if (!token || !secret) {
       return json(400, { error: 'No pudimos verificar que eres humano, vuelve a intentarlo.' });
     }
@@ -112,8 +112,8 @@ export const POST: APIRoute = async ({ request }) => {
       return json(400, { error: 'Verificación anti-spam fallida. Inténtalo de nuevo.' });
     }
 
-    const supabaseUrl = env.SUPABASE_URL ?? process.env.SUPABASE_URL;
-    const supabaseKey = env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const supabaseUrl = env.SUPABASE_URL ?? process.env.SUPABASE_URL ?? 'https://hagdxqkfqvpmmtbsyygl.supabase.co';
+    const supabaseKey = env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY ?? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhhZ2R4cWtmcXZwbW10YnN5eWdsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NTkzMzUxOCwiZXhwIjoyMTAxNTA5NTE4fQ.JR5j_ma78xJCwAJhdfr5PRyqCacNEuvo3GfAPDArrn8';
     if (!supabaseUrl || !supabaseKey) {
       console.error('Supabase env missing. Check SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY');
       return json(500, { error: 'La base de datos no está configurada.' });

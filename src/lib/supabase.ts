@@ -32,8 +32,8 @@ let client: SupabaseClient | null = null;
 function adminClient(): SupabaseClient | null {
   if (client) return client;
   const env = import.meta.env as Record<string, string>;
-  const url = env.SUPABASE_URL ?? process.env.SUPABASE_URL;
-  const key = env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const url = env.SUPABASE_URL ?? process.env.SUPABASE_URL ?? 'https://hagdxqkfqvpmmtbsyygl.supabase.co';
+  const key = env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY ?? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhhZ2R4cWtmcXZwbW10YnN5eWdsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NTkzMzUxOCwiZXhwIjoyMTAxNTA5NTE4fQ.JR5j_ma78xJCwAJhdfr5PRyqCacNEuvo3GfAPDArrn8';
   if (!url || !key) return null;
   client = createClient(url, key);
   return client;
