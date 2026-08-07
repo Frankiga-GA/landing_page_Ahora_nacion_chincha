@@ -8,7 +8,10 @@ import {
   REDES,
 } from '../lib/opciones';
 
-const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAAEHZP1h0cKxOiYsY';
+const envKey = (import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '').trim();
+const turnstileSiteKey = (envKey && !envKey.startsWith('1x0000') && !envKey.startsWith('2x0000') && !envKey.startsWith('3x0000'))
+  ? envKey
+  : '0x4AAAAAAEHZP1h0cKxOiYsY';
 ---
 
 <section class="form-section">
