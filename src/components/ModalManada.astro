@@ -1,0 +1,185 @@
+---
+const SHORT_ID = '-gUQ-X9OVcM';
+---
+
+<div id="video-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Video de presentación de La Manada">
+  <div class="modal-card">
+    <button type="button" id="modal-close" class="modal-close" aria-label="Cerrar video y continuar con el formulario">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+
+    <p class="modal-eyebrow">Únete a La Manada</p>
+    <h2 class="modal-title">Míralo en un minuto</h2>
+    <p class="modal-sub">
+      Así de simple es empezar a cambiar Chincha. Cuando termines, completa el formulario
+      para unirte oficialmente.
+    </p>
+
+    <div class="modal-video">
+      <iframe
+        class="modal-frame"
+        src={`https://www.youtube-nocookie.com/embed/${SHORT_ID}`}
+        title="Video de La Manada de Chincha"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <button type="button" id="modal-skip" class="modal-skip">
+      Ya lo vi — continuar al formulario
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  const overlay = document.getElementById('video-modal');
+  if (overlay) {
+    const frame = overlay.querySelector('.modal-frame');
+    const cierre = [document.getElementById('modal-close'), document.getElementById('modal-skip')];
+
+    function cerrar() {
+      if (frame) frame.src = '';
+      overlay.classList.add('hidden');
+      document.body.style.overflow = '';
+      overlay.removeAttribute('aria-hidden');
+    }
+
+    cierre.forEach((btn) => btn?.addEventListener('click', cerrar));
+
+    overlay.addEventListener('click', (event) => {
+      if (event.target === overlay) cerrar();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') cerrar();
+    });
+
+    if (window.location.hash !== '#form') {
+      overlay.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      overlay.setAttribute('aria-hidden', 'false');
+    }
+  }
+</script>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(40, 37, 37, 0.82);
+    backdrop-filter: blur(4px);
+    padding: 1.25rem;
+  }
+
+  .modal-overlay.hidden { display: none; }
+
+  .modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 26rem;
+    background: white;
+    border-radius: 1.25rem;
+    padding: 2rem 1.5rem 1.5rem;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-height: 90dvh;
+    overflow-y: auto;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: none;
+    border-radius: 9999px;
+    background: rgba(40, 37, 37, 0.08);
+    color: #282525;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover { background: rgba(215, 38, 56, 0.12); color: #D72638; }
+
+  .modal-eyebrow {
+    display: inline-block;
+    background: rgba(215, 38, 56, 0.1);
+    color: #D72638;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+    padding: 0.3rem 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .modal-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.75rem;
+    color: #282525;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-sub {
+    color: rgba(40, 37, 37, 0.7);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .modal-video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    max-height: 60dvh;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #000;
+    margin-bottom: 1.25rem;
+  }
+
+  .modal-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .modal-skip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    font-family: 'Anton', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: white;
+    background: #D72638;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.9rem 1.25rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .modal-skip:hover { background: #b51e2e; }
+</style>

@@ -1,7 +1,7 @@
 import { e as createAstro, f as createComponent, k as renderComponent, r as renderTemplate, l as defineScriptVars, h as addAttribute, m as maybeRenderHead } from '../chunks/astro/server_CBEUGtRa.mjs';
 import 'piccolore';
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_BeU-ffnx.mjs';
-import { s as sesionValida } from '../chunks/auth_BreoIK1h.mjs';
+import { $ as $$BaseLayout } from '../chunks/BaseLayout_B0bKjV8h.mjs';
+import { s as sesionValida } from '../chunks/auth_jdMp3X-S.mjs';
 import { createClient } from '@supabase/supabase-js';
 import { H as HABILIDADES, D as DISTRITOS } from '../chunks/opciones_Owe3bcrJ.mjs';
 /* empty css                                 */
@@ -11,7 +11,7 @@ let client = null;
 function adminClient() {
   if (client) return client;
   const url = "https://hagdxqkfqvpmmtbsyygl.supabase.co";
-  const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhhZ2R4cWtmcXZwbW10YnN5eWdsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU5MzM1MTgsImV4cCI6MjEwMTUwOTUxOH0.Q-MWooiSgueIQN7YdtcasllPdUKicYH3noWnf1Mi5k8";
+  const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhhZ2R4cWtmcXZwbW10YnN5eWdsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NTkzMzUxOCwiZXhwIjoyMTAxNTA5NTE4fQ.JR5j_ma78xJCwAJhdfr5PRyqCacNEuvo3GfAPDArrn8";
   client = createClient(url, key);
   return client;
 }

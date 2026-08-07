@@ -1,7 +1,7 @@
 import { e as createAstro, f as createComponent, k as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_CBEUGtRa.mjs';
 import 'piccolore';
-import { $ as $$BaseLayout } from '../../chunks/BaseLayout_BeU-ffnx.mjs';
-import { l as loginBloqueado, c as credencialesValidas, i as iniciarSesion, r as restablecerIntentos, a as registrarIntento } from '../../chunks/auth_BreoIK1h.mjs';
+import { $ as $$BaseLayout } from '../../chunks/BaseLayout_B0bKjV8h.mjs';
+import { l as loginBloqueado, c as credencialesValidas, i as iniciarSesion, r as restablecerIntentos, a as registrarIntento } from '../../chunks/auth_jdMp3X-S.mjs';
 /* empty css                                    */
 export { renderers } from '../../renderers.mjs';
 

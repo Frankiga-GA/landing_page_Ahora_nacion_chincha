@@ -1,12 +1,12 @@
 import { timingSafeEqual, createHash } from 'node:crypto';
 
-const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "PUBLIC_TURNSTILE_SITE_KEY": "", "SITE": "https://zinthiagaray.pe", "SSR": true};
+const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAAEHZP1h0cKxOiYsY", "SITE": "https://zinthiagaray.pe", "SSR": true};
 const SESSION_COOKIE = "manada_admin";
 const SESSION_HORAS = 24 * 7;
 const MAX_INTENTOS = 5;
 const VENTANA_MS = 15 * 60 * 1e3;
 function envValue(key) {
-  return Object.assign(__vite_import_meta_env__, { OS: process.env.OS })[key] ?? "";
+  return Object.assign(__vite_import_meta_env__, { ADMIN_EMAIL: "ahoraNacion@gamil.com", ADMIN_PASSWORD: "123456987", ADMIN_TOKEN: "002597c122ac0aa1c43dfcd6b3f2d5facc70d2082e741613683467866c65b834", OS: process.env.OS })[key] ?? "";
 }
 function hash(value) {
   return createHash("sha256").update(value).digest("hex");

@@ -1,7 +1,7 @@
 import { e as createAstro, f as createComponent } from '../../chunks/astro/server_CBEUGtRa.mjs';
 import 'piccolore';
 import 'clsx';
-import { b as cerrarSesion } from '../../chunks/auth_BreoIK1h.mjs';
+import { b as cerrarSesion } from '../../chunks/auth_jdMp3X-S.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$Astro = createAstro("https://zinthiagaray.pe");

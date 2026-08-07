@@ -1,0 +1,86 @@
+---
+import { videos } from '../data/videos';
+import VideoGrid from './VideoGrid.astro';
+
+const visibles = videos.slice(0, 3);
+---
+
+<section id="medios" class="medios-section">
+  <div class="medios-container">
+    <h2 class="medios-title">Medios</h2>
+    <p class="medios-intro">
+      Revive los videos de la campaña directamente aquí, sin salir de la página.
+    </p>
+
+    <VideoGrid videos={visibles} />
+
+    <div class="medios-more">
+      <a href="/medios" class="medios-cta">Entérate de más</a>
+    </div>
+  </div>
+</section>
+
+<script is:inline async src="https://www.tiktok.com/embed.js"></script>
+
+<style>
+  .medios-section {
+    padding: 5rem 1rem;
+    background: #FAFAFA;
+  }
+
+  @media (min-width: 768px) {
+    .medios-section { padding: 8rem 1rem; }
+  }
+
+  .medios-container {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .medios-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.25rem;
+    color: #282525;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .medios-title { font-size: 3rem; }
+  }
+
+  .medios-intro {
+    text-align: center;
+    color: rgba(40, 37, 37, 0.7);
+    max-width: 42rem;
+    margin: 0 auto 3.5rem;
+    line-height: 1.6;
+  }
+
+  .medios-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+
+  .medios-cta {
+    display: inline-block;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: white;
+    background: #282525;
+    border-radius: 0.75rem;
+    padding: 0.9rem 2.5rem;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 10px 20px rgba(40, 37, 37, 0.25);
+  }
+
+  .medios-cta:hover {
+    background: #D72638;
+    transform: translateY(-2px);
+  }
+</style>

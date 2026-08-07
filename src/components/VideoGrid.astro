@@ -1,0 +1,77 @@
+---
+interface Props {
+  videos: { id: string; descripcion: string }[];
+}
+
+const { videos } = Astro.props;
+---
+
+<div class="video-grid">
+  {videos.map((video) => (
+    <article class="video-card">
+      <blockquote
+        class="tiktok-embed"
+        cite={`https://www.tiktok.com/@zinthiagaray/video/${video.id}`}
+        data-video-id={video.id}
+      >
+        <section>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`https://www.tiktok.com/@zinthiagaray/video/${video.id}?refer=embed`}
+            title="@zinthiagaray"
+          >
+            @zinthiagaray
+          </a>
+        </section>
+      </blockquote>
+      <p class="video-desc">{video.descripcion}</p>
+    </article>
+  ))}
+</div>
+
+<style>
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .video-card {
+    background: white;
+    border: 1px solid rgba(40, 37, 37, 0.1);
+    border-radius: 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .video-card blockquote {
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .video-card section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 12rem;
+    color: rgba(40, 37, 37, 0.6);
+    font-size: 0.9rem;
+    gap: 0.4rem;
+  }
+
+  .video-card section a {
+    color: #D72638;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .video-desc {
+    margin: 1rem 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: rgba(40, 37, 37, 0.75);
+  }
+</style>
